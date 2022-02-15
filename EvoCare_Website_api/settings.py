@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
-    'services.apps.ServicesConfig',
 
 ]
 
@@ -50,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'users.apps.UsersConfig',
+    'services.apps.ServicesConfig'
 ]
 
 ROOT_URLCONF = 'EvoCare_Website_api.urls'

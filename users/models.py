@@ -2,19 +2,36 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 
+#<<<<<<< HEAD
 
 # Create your models her
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=12, validators=[RegexValidator(regex='^01[0|1|2|5][0-9]{8}$',
-                                                                       message='Phone must be start 010, 011, 012, 015 and all number contains 11 digits',
-                                                                       code='invalid number')])
-    birth = models.DateField(null=False)
+#=======
+# Create your models here.
 
 
-class Appointement(models.Model):
-    dateandtime = models.CharField()
-    User_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+class User(models.Model):
+    fullname = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+    Email = models.EmailField(max_length=240)
 
+
+class Cars(models.Model):
+    pass
+
+
+class Appointments(models.Model):
+    Date_Time = models.CharField(max_length=30)
+    Last_Name = models.CharField(max_length=30)
+    First_Name = models.CharField(max_length=30)
+    Phone = models.CharField(max_length=30)
+    Email = models.CharField(max_length=30)
+    User_Id = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+
+
+
+
+
+
+#>>>>>>> 7ba510865f8bb9413ccf27aa48965404b7c63837

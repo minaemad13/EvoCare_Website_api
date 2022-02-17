@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users.apps.UsersConfig',
+    'services.apps.ServicesConfig',
+    'rest_framework',
+    "corsheaders",
 
 ]
 
@@ -48,8 +52,39 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'users.apps.UsersConfig',
-    'services.apps.ServicesConfig'
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+
+]
+
+CORS_ALLOWED_ORIGINS = [
+"https://domain.com",
+"https://api.domain.com",
+"http://localhost:8080",
+"http://127.0.0.1:9000",
+"http://localhost:3000"
+]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+r"^https://\w+\.domain\.com$",
+]
+CORS_ALLOW_METHODS = [
+'DELETE',
+'GET',
+'OPTIONS',
+'PATCH',
+'POST',
+'PUT',
+]
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
 ]
 
 ROOT_URLCONF = 'EvoCare_Website_api.urls'
@@ -79,8 +114,19 @@ WSGI_APPLICATION = 'EvoCare_Website_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'evocare',
+
+        'USER': 'master',
+
+        'PASSWORD': 'evocare1',
+
+        'HOST': 'localhost',
+
+        'PORT': '5432',
+
     }
 }
 

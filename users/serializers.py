@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from users.models import Appointement
+from users.models import Appointments
 
 
-class AppointmentSerializer(serializers.HyperlinkedModelSerializer):
+class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Appointement
-        fields=['User_id','dateandtime']
+        model = Appointments
+        fields = '__all__'

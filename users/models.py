@@ -4,7 +4,9 @@ from django.db import models
 
 
 class User(models.Model):
-    pass
+    # user = models.CharField(max_length=40,null=True)
+    # id=models.AutoField(primary_key=True)
+    # user=models.TextField()
 
 
 class Cars(models.Model):
@@ -16,7 +18,11 @@ class Appointments(models.Model):
 
 
 class Feedback(models.Model):
-    pass
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=40,null=True)
+    feedback = models.TextField()
+    def _str_(self):
+        return self.feedback
 
 
 

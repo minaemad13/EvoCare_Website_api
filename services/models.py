@@ -22,8 +22,8 @@ class ServicesPictures(models.Model):
     )
 
     sv_id = models.ForeignKey(Services, on_delete=models.CASCADE)
-    title = models.CharField(max_length=250)
-    alt = models.TextField(null=True)
+    title = models.CharField(max_length=250, blank=True, null=True,)
+    alt = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to="services_images")
     date_uploaded = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=11, choices=options, default='active')
@@ -60,4 +60,18 @@ class ServicesVideos(models.Model):
 
 
 class Packages(models.Model):
-    pass
+    options = (
+        ('active', 'Active'),
+        ('deactivated', 'Deactivated'),
+    )
+    sv_id = models.ForeignKey(Services, on_delete=models.CASCADE)
+    pck_name = models.CharField(max_length=250,default='Package')
+    pck_price = models.IntegerField()
+    status = models.CharField(max_length=11, choices=options, default='active')
+
+    class Meta:
+        verbose_name = 'Package'
+        verbose_name_plural = 'Packages'
+
+    def __str__(self):
+        return self.pck_name

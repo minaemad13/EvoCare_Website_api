@@ -13,3 +13,10 @@ class Cars(models.Model):
 
 class Appointments(models.Model):
     pass
+
+
+class Feedback(models.Model):
+    pass
+
+
+

@@ -1,10 +1,18 @@
+from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.db import models
 
+#<<<<<<< HEAD
+
+# Create your models her
+
+
+#=======
 # Create your models here.
 
 
 class User(models.Model):
-    pass
+   pass
 
 
 class Cars(models.Model):
@@ -12,4 +20,16 @@ class Cars(models.Model):
 
 
 class Appointments(models.Model):
-    pass
+    Date_Time = models.CharField(max_length=30)
+    Last_Name = models.CharField(max_length=30)
+    First_Name = models.CharField(max_length=30)
+    Phone = models.CharField(max_length=30)
+    Email = models.CharField(max_length=30)
+    User_Id = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+
+
+
+
+
+
+#>>>>>>> 7ba510865f8bb9413ccf27aa48965404b7c63837

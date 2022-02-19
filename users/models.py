@@ -4,9 +4,8 @@ from django.db import models
 
 
 class User(models.Model):
-    # user = models.CharField(max_length=40,null=True)
-    # id=models.AutoField(primary_key=True)
-    # user=models.TextField()
+    pass
+
 
 
 class Cars(models.Model):

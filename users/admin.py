@@ -13,3 +13,7 @@ admin.site.register(User)
 
 
 # Register your models here.
+
+from users.models import Appointments
+
+admin.site.register(Appointments)

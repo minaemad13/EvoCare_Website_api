@@ -1,8 +1,18 @@
-from pyexpat import model
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
+from pyexpat import model
 
+
+#<<<<<<< HEAD
+
+# Create your models her
+
+
+#=======
 # Create your models here.
 
 
@@ -17,10 +27,24 @@ class UserProfile(models.Model):
     is_verified = models.BooleanField(null=True)
 
 
+
+
 class Cars(models.Model):
     model = models.CharField(max_length=30)
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
 
 class Appointments(models.Model):
-    pass
+    Date_Time = models.CharField(max_length=30)
+    Last_Name = models.CharField(max_length=30)
+    First_Name = models.CharField(max_length=30)
+    Phone = models.CharField(max_length=30)
+    Email = models.CharField(max_length=30)
+    User_Id = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+
+
+
+
+
+
+#>>>>>>> 7ba510865f8bb9413ccf27aa48965404b7c63837

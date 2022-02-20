@@ -1,7 +1,6 @@
 
-
 from rest_framework import serializers
-from users.models import UserProfile, Cars, Appointments
+from users.models import UserProfile, Cars, Appointments,Feedback
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -24,3 +23,9 @@ class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointments
         fields = '__all__'
+
+class FeedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = ('user_id','user_name','feedback')
+        

@@ -7,12 +7,6 @@ from django.core.validators import RegexValidator
 from pyexpat import model
 
 
-#<<<<<<< HEAD
-
-# Create your models her
-
-
-#=======
 # Create your models here.
 
 
@@ -29,11 +23,17 @@ class UserProfile(models.Model):
 
 
 
+
 class Cars(models.Model):
     model = models.CharField(max_length=30)
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-
-
+    
+class Feedback(models.Model):
+    user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=40,null=True)
+    feedback = models.TextField()
+    def _str_(self):
+        return self.feedback
 class Appointments(models.Model):
     Date_Time = models.CharField(max_length=30)
     Last_Name = models.CharField(max_length=30)
@@ -48,3 +48,4 @@ class Appointments(models.Model):
 
 
 #>>>>>>> 7ba510865f8bb9413ccf27aa48965404b7c63837
+

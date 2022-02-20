@@ -18,10 +18,13 @@ from rest_framework import routers
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
-from users.views import Take_Appointement, GetAppointement
+from users import views
+from users.views import Take_Appointement, GetAppointement,addFeed
+
 
 router=routers.DefaultRouter()
 router.register(r'invalid',GetAppointement)
+router.register(r'feedbacks', views.FeedView)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('services.urls')),
@@ -31,11 +34,8 @@ urlpatterns = [
     path('edit/<int:id>', EditProfile),
     path('book', Take_Appointement),
     path('', include(router.urls)),
-    path('',include('services.urls'))
-
-
-
+    path('',include('services.urls')),
+    path('feedback/',addFeed)    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-   
 

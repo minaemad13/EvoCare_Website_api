@@ -46,7 +46,7 @@ def EditProfile(request, id):
           
           
 class GetAppointement(viewsets.ModelViewSet):
-    queryset = Appointments.objects.raw('SELECT "Date_Time" , id FROM users_appointments')
+    queryset = Appointments.objects.all()
     serializer_class = AppointmentSerializer
 
 @api_view(['POST'])

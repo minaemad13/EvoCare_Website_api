@@ -19,7 +19,7 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 from users import views
-from users.views import Take_Appointement, GetAppointement,addFeed
+from users.views import *
 
 
 router=routers.DefaultRouter()

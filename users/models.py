@@ -40,7 +40,7 @@ class Appointments(models.Model):
     First_Name = models.CharField(max_length=30)
     Phone = models.CharField(max_length=30)
     Email = models.CharField(max_length=30)
-    User_Id = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    User_Id = models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=True)
 
 
 

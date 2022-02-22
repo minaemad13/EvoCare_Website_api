@@ -29,8 +29,7 @@ def MyLogin(request):
         password = request.data['password']
         user = UserProfile.objects.get(email=email, password=password)
         if user:
-            return JsonResponse({'result': "Login", "user_id": user.id
-                                 })
+            return JsonResponse({'result': "Login", "user_id": user.id})
         return JsonResponse({'result': "failed "}, status=400)
 
 

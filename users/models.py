@@ -34,18 +34,15 @@ class Feedback(models.Model):
     feedback = models.TextField()
     def _str_(self):
         return self.feedback
+
+#it will edit adding packageid
 class Appointments(models.Model):
     Date_Time = models.CharField(max_length=30,null=False, unique=True)
     Last_Name = models.CharField(max_length=30,null=False)
     First_Name = models.CharField(max_length=30,null=False)
     Phone = models.CharField(max_length=30,null=False)
     Email = models.CharField(max_length=30,null=False)
-    User_Id = models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=True)
-
-
-
-
-
+    User_Id = models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=False)
 
 #>>>>>>> 7ba510865f8bb9413ccf27aa48965404b7c63837
 

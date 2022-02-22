@@ -35,11 +35,11 @@ class Feedback(models.Model):
     def _str_(self):
         return self.feedback
 class Appointments(models.Model):
-    Date_Time = models.CharField(max_length=30)
-    Last_Name = models.CharField(max_length=30)
-    First_Name = models.CharField(max_length=30)
-    Phone = models.CharField(max_length=30)
-    Email = models.CharField(max_length=30)
+    Date_Time = models.CharField(max_length=30,null=False, unique=True)
+    Last_Name = models.CharField(max_length=30,null=False)
+    First_Name = models.CharField(max_length=30,null=False)
+    Phone = models.CharField(max_length=30,null=False)
+    Email = models.CharField(max_length=30,null=False)
     User_Id = models.ForeignKey(UserProfile, on_delete=models.CASCADE,null=True)
 
 

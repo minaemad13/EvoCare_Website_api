@@ -3,7 +3,7 @@ from django.shortcuts import render
 from wsgiref.util import FileWrapper
 from .custom_renderers import JPEGRenderer, PNGRenderer
 from rest_framework import generics
-from services.models import ServicesPictures
+from services.models import ServicesPictures,Packages
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import renderers
@@ -30,3 +30,12 @@ class ImageView(APIView):
         images = ServicesPictures.objects.order_by('id')
         serializer = serializers.PicturesSerializer(images,many=True)
         return Response({'images': serializer.data})
+
+class PackagesView(APIView):
+    def get(self,request,sv_id):
+        packges = Packages.objects.all()
+        packges = packges.filter(sv_id=sv_id)
+        serializer = serializers.PackagesSerializer(packges, many=True)
+        return Response({'packages': serializer.data})
+
+

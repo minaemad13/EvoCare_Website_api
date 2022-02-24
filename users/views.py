@@ -6,8 +6,17 @@ from users.models import UserProfile, Appointments,Feedback
 from django.shortcuts import render
 from users.serializers import UserLoginSerializer, UserProfileSerializer, AppointmentSerializer,FeedSerializer
 from rest_framework import status, viewsets
+from rest_framework.permissions import IsAuthenticated
  
 # Create your views here.
+from rest_framework.permissions import IsAuthenticated
+
+
+# class ImageViewSet(FlexFieldsModelViewSet):
+
+#     serializer_class = ImageSerializer
+#     queryset = Image.objects.all()
+   
 
 
 @api_view(['POST'])
@@ -48,6 +57,7 @@ def EditProfile(request, id):
 class GetAppointement(viewsets.ModelViewSet):
     queryset = Appointments.objects.all()
     serializer_class = AppointmentSerializer
+    
 
 @api_view(['POST'])
 def Take_Appointement(request):

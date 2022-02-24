@@ -2,11 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-from users.models import UserProfile, Appointments,Feedback
+from users.models import UserProfile, Appointments, Feedback
 from django.shortcuts import render
-from users.serializers import UserLoginSerializer, UserProfileSerializer, AppointmentSerializer,FeedSerializer
+from users.serializers import UserLoginSerializer, UserProfileSerializer, AppointmentSerializer, FeedSerializer
 from rest_framework import status, viewsets
- 
+
+
 # Create your views here.
 
 
@@ -44,12 +45,13 @@ def EditProfile(request, id):
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)
-          
-          
-          
+        return JsonResponse(serializer.errors, status=400)
+
+
 class GetAppointement(viewsets.ModelViewSet):
     queryset = Appointments.objects.all()
     serializer_class = AppointmentSerializer
+
 
 @api_view(['POST'])
 def Take_Appointement(request):
@@ -58,13 +60,14 @@ def Take_Appointement(request):
         serializer = AppointmentSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(data)
+            return JsonResponse({"result": "BOOKED"})
         return JsonResponse(serializer.errors, status=400)
-      
-      
+
+
 class FeedView(viewsets.ModelViewSet):
     serializer_class = FeedSerializer
     queryset = Feedback.objects.all()
+
 
 @api_view(['POST'])
 def addFeed(request):
@@ -75,6 +78,5 @@ def addFeed(request):
             serializer.save()
             return JsonResponse(data)
         return JsonResponse(serializer.errors, status=400)
-
 
         # return JsonResponse(serializer.errors, status=400)

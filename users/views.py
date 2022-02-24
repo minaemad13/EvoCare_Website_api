@@ -27,10 +27,14 @@ def MyLogin(request):
     if request.method == 'POST':
         email = request.data['email']
         password = request.data['password']
-        user = UserProfile.objects.get(email=email, password=password)
-        if user:
-            return JsonResponse({'result': "Login", "user_id": user.id})
-        return JsonResponse({'result': "failed "}, status=400)
+        try:
+            user = UserProfile.objects.get(email=email, password=password)
+            if user:
+                return JsonResponse({'result': "1", 'message': "login successful", "user_id": user.id})
+        except UserProfile.DoesNotExist:
+            return JsonResponse({'result': "2", 'message': "the email or password is not correct"}, status=400)
+
+    return JsonResponse({'result': "failed "}, status=400)
 
 
 @api_view(['PUT'])

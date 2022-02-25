@@ -1,14 +1,21 @@
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from users.models import UserProfile, Appointments, Feedback
 from django.shortcuts import render
 from users.serializers import UserLoginSerializer, UserProfileSerializer, AppointmentSerializer, FeedSerializer
 from rest_framework import status, viewsets
+import jwt, datetime
+from rest_framework.response import Response
+from jwt.api_jwt import PyJWT
+from django.core import serializers
 
+# class ImageViewSet(FlexFieldsModelViewSet):
 
-# Create your views here.
+#     serializer_class = ImageSerializer
+#     queryset = Image.objects.all()
+   
 
 
 @api_view(['POST'])
@@ -30,7 +37,20 @@ def MyLogin(request):
         try:
             user = UserProfile.objects.get(email=email, password=password)
             if user:
-                return JsonResponse({'result': "1", 'message': "login successful", "user_id": user.id})
+                payload = {
+                    'id': user.id,
+                    'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
+                    'iat': datetime.datetime.utcnow()
+                }
+
+                token = jwt.encode(payload,'django-insecure-!^f2ot^_+g!g9$0j@eb8hvhcw+63*hth0=#wo*+2x#45sx95x$', algorithm='HS256').decode('utf-8')  
+                return JsonResponse({'jwt': token}, status=200)
+
+
+
+
+
+                # return JsonResponse({'result': "1", 'message': "login successful", "user_id": user.id})
         except UserProfile.DoesNotExist:
             return JsonResponse({'result': "2", 'message': "the email or password is not correct"}, status=400)
 
@@ -51,6 +71,7 @@ def EditProfile(request, id):
 class GetAppointement(viewsets.ModelViewSet):
     queryset = Appointments.objects.all()
     serializer_class = AppointmentSerializer
+    
 
 
 @api_view(['POST'])

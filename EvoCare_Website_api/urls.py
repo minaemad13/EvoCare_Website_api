@@ -20,11 +20,16 @@ from django.conf.urls.static import static
 from django.conf import settings
 from users import views
 from users.views import *
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 
 router=routers.DefaultRouter()
 router.register(r'invalid',GetAppointement)
 router.register(r'feedbacks', views.FeedView)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('services.urls')),

@@ -31,7 +31,6 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [

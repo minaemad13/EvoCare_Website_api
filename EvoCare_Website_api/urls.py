@@ -22,9 +22,11 @@ from users import views
 from users.views import *
 
 
+
 router=routers.DefaultRouter()
 router.register(r'invalid',GetAppointement)
 router.register(r'feedbacks', views.FeedView)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('services.urls')),

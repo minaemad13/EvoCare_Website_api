@@ -20,10 +20,6 @@ class UserProfile(models.Model):
     address = models.CharField(max_length=40)
     is_verified = models.BooleanField(null=True)
 
-
-
-
-
 class Cars(models.Model):
     model = models.CharField(max_length=30)
     user_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

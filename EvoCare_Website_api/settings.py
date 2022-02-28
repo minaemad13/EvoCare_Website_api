@@ -59,6 +59,8 @@ MIDDLEWARE = [
 
 ]
 
+#AUTH_USER_MODEL = 'users.UserProfile'
+
 CORS_ALLOWED_ORIGINS = [
 "https://domain.com",
 "https://api.domain.com",
@@ -89,7 +91,13 @@ CORS_ALLOW_HEADERS = [
 'x-requested-with',
 ]
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'PAGE_SIZE': 10
+}
 
 
 ROOT_URLCONF = 'EvoCare_Website_api.urls'

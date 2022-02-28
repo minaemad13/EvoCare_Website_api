@@ -34,6 +34,7 @@ urlpatterns = [
     path('register/', register),
     path("login/", MyLogin),
     path('edit/<int:id>', EditProfile),
+    path('getuser/<int:id>', GetSpecificUser),
     path('book', Take_Appointement),
     path('', include(router.urls)),
     path('',include('services.urls')),

@@ -17,8 +17,6 @@ class UserProfile(models.Model):
     email = models.EmailField(max_length=30)
     password = models.CharField(max_length=50)
     address = models.CharField(max_length=40)
-    is_verified = models.BooleanField(null=True)
-
 
 class Cars(models.Model):
     model = models.CharField(max_length=30)

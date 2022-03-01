@@ -3,14 +3,16 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.permissions import IsAuthenticated
-
-
+import stripe
+from rest_framework.response import Response
 from users.models import UserProfile, Appointments, Feedback
-
+from django.shortcuts import redirect
 from users.serializers import UserLoginSerializer, UserProfileSerializer, AppointmentSerializer, FeedSerializer
 from rest_framework import status, viewsets
 import jwt, datetime
 from django.conf import settings
+from rest_framework.views import APIView
+
 
 @api_view(['POST'])
 def register(request):
@@ -109,3 +111,30 @@ def addFeed(request):
         return JsonResponse(serializer.errors, status=400)
 
         # return JsonResponse(serializer.errors, status=400)
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+class StripeCheckoutView(APIView):
+    def post(self, request):
+        print("1")
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                line_items=[
+                    {
+                        'price': 'prod_LF1SGvISevIjjV',
+                        'quantity': 1,
+                    },
+                ],
+                payment_method_type =['card'],
+                mode='payment',
+                success_url=settings.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=settings.SITE_URL + '?canceled=true',
+            )
+            print(checkout_session.url)
+            return redirect(checkout_session.url)
+
+        except :
+            return Response(
+                {'error':'Something went wrong when creating stripe checkout session'},
+                 status= status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

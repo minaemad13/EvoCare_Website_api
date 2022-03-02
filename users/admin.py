@@ -15,4 +15,5 @@ admin.site.register(Appointments)
 class QrAdmin(admin.ModelAdmin):
     list_display = ('user_id','vip', 'qr_code')
     readonly_fields = ['qr_code']
+
 # admin.site.register(Qr,UserAdmin)

@@ -17,11 +17,11 @@ from services.models import Packages
 
 
 class UserProfile(models.Model):
-    phone = models.CharField(max_length=13)
+    phone = models.CharField(max_length=13,unique=True)
     First_Name = models.CharField(max_length=20)
     Last_Name = models.CharField(max_length=20)
     birth = models.CharField(max_length=40, null=True)
-    email = models.EmailField(max_length=30)
+    email = models.EmailField(max_length=30,unique=True)
     password = models.CharField(max_length=50)
     address = models.CharField(max_length=40)
 

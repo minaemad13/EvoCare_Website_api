@@ -116,8 +116,9 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class StripeCheckoutView(APIView):
     def post(self, request):
-        print("1")
+        print(1)
         try:
+            print(2)
             checkout_session = stripe.checkout.Session.create(
                 line_items=[
                     {
@@ -130,10 +131,10 @@ class StripeCheckoutView(APIView):
                 success_url=settings.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}',
                 cancel_url=settings.SITE_URL + '?canceled=true',
             )
-            print(checkout_session.url)
+            print(3)
             return redirect(checkout_session.url)
 
-        except :
+        except:
             return Response(
                 {'error':'Something went wrong when creating stripe checkout session'},
                  status= status.HTTP_500_INTERNAL_SERVER_ERROR

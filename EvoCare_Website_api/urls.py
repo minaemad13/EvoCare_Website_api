@@ -22,7 +22,6 @@ from users import views
 from users.views import *
 
 
-
 router=routers.DefaultRouter()
 router.register(r'invalid',GetAppointement)
 router.register(r'feedbacks', views.FeedView)
@@ -38,7 +37,8 @@ urlpatterns = [
     path('book', Take_Appointement),
     path('', include(router.urls)),
     path('',include('services.urls')),
-    path('feedback/',addFeed)    
+    path('feedback/',addFeed),
+    path('testpayment/', StripeCheckoutView.as_view()),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

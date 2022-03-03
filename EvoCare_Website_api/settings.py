@@ -190,5 +190,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SITE_URL = 'http://localhost:3000'
+SITE_URL = 'http://localhost:3000/'
 STRIPE_SECRET_KEY = 'sk_test_51KXXz2FVwpm3iA1u3g6S6zHj10aBGq21w9VFK81D0saEGKem3Ga3HgBJJ8X7z9eXobMf9ESfVTwE16nTydRDVfjJ00V6OiomFc'

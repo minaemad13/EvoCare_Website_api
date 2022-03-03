@@ -128,11 +128,12 @@ class StripeCheckoutView(APIView):
                 ],
                 payment_method_types=['card',],
                 mode='payment',
-                success_url= settings.SITE_URL + '/?success=true&session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=settings.SITE_URL + '/?canceled=true',
+                success_url= settings.SITE_URL + '?success=true&session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=settings.SITE_URL + '?canceled=true',
             )
-            print(2)
-            return redirect(checkout_session.url)
+            print(checkout_session.url)
+            url = checkout_session.url
+            return JsonResponse({"url":url})
 
         except:
             return Response(

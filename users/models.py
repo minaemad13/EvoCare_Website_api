@@ -10,20 +10,24 @@ import random
 from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
-from django.db.models.signals import pre_delete,post_save
+from django.db.models.signals import pre_delete, post_save
 from django.dispatch import receiver
 # Create your models here.
 from services.models import Packages
 
 
 class UserProfile(models.Model):
-    phone = models.CharField(max_length=13,unique=True)
+    phone = models.CharField(max_length=13, unique=True)
     First_Name = models.CharField(max_length=20)
     Last_Name = models.CharField(max_length=20)
     birth = models.CharField(max_length=40, null=True)
-    email = models.EmailField(max_length=30,unique=True)
+    email = models.EmailField(max_length=30, unique=True)
     password = models.CharField(max_length=50)
     address = models.CharField(max_length=40)
+
+    def __str__(self):
+        name=self.First_Name + " "+ self.Last_Name
+        return (name )
 
 
 class Cars(models.Model):
@@ -49,7 +53,11 @@ class Appointments(models.Model):
     Email = models.CharField(max_length=30, null=False)
     User_Id = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=False)
     package_id = models.ForeignKey(Packages, on_delete=models.CASCADE, null=False)
-    package_price = models.IntegerField(null=False)
+    package_price = models.FloatField(null=False)
+
+    def __str__(self):
+        return self.Date_Time
+
 
 # >>>>>>> 7ba510865f8bb9413ccf27aa48965404b7c63837
 
@@ -71,7 +79,7 @@ class Qr(models.Model):
             url = f"http://127.0.0.1:8000/admin/users/userprofile/{self.user_id.id}"
             qrcode_img = qrcode.make(
                 url)
-            canvas = Image.new('RGB', (450,400), 'white')
+            canvas = Image.new('RGB', (450, 400), 'white')
             canvas.paste(qrcode_img)
             fname = f'qr_code-{self.user_id}{random.randint(1000, 9999)}.png'
             buffer = BytesIO()
@@ -82,7 +90,6 @@ class Qr(models.Model):
     def save(self, *args, **kwargs):
         self.create_qr()
         super(Qr, self).save(*args, **kwargs)
-
 
 
 @receiver(pre_delete, sender=Qr)

@@ -21,7 +21,7 @@ from django.conf import settings
 from users import views
 from users.views import *
 
-
+admin.site.site_url = 'http://localhost:3000/'
 router=routers.DefaultRouter()
 router.register(r'invalid',GetAppointement)
 router.register(r'feedbacks', views.FeedView)

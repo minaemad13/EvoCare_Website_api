@@ -35,7 +35,8 @@ CORS_ORIGIN_WHITELIST = [
 
 INSTALLED_APPS = [
     'rest_framework',
-    'django.contrib.admin',
+    'material',
+    'material.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -102,6 +103,27 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+MATERIAL_ADMIN_SITE = {
+    'HEADER':  ('EvoCare Admin Panel'),  # Admin site header
+    'TITLE':  ('EvoCare'),  # Admin site title
+    'FAVICON':  'base/car.ico',  # Admin site favicon (path to static should be specified)
+    'MAIN_BG_COLOR':  '#625D5D',  # Admin site main color, css color should be specified
+    'MAIN_HOVER_COLOR':  '#efb533',  # Admin site main hover color, css color should be specified
+    'PROFILE_PICTURE':  'base/logo.png',  # Admin site profile picture (path to static should be specified)
+    'PROFILE_BG':  'base/background.jpg',  # Admin site profile background (path to static should be specified)
+    'LOGIN_LOGO':  'base/logo.png',  # Admin site logo on login page (path to static should be specified)
+    # 'LOGOUT_BG':  'path/to/image',  # Admin site background on login/logout pages (path to static should be specified)
+    'SHOW_THEMES':  True,  #  Show default admin themes button
+    'TRAY_REVERSE': True,  # Hide object-tools and additional-submit-line by default
+    'NAVBAR_REVERSE': True,  # Hide side navbar by default
+    'SHOW_COUNTS': True, # Show instances counts for each model
+    'APP_ICONS': {  # Set icons for applications(lowercase), including 3rd party apps, {'application_name': 'material_icon_name', ...}
+        'sites': 'send',
+    },
+    'MODEL_ICONS': {  # Set icons for models(lowercase), including 3rd party models, {'model_name': 'material_icon_name', ...}
+        'site': 'contact_mail',
+    }
+}
 
 ROOT_URLCONF = 'EvoCare_Website_api.urls'
 
@@ -184,7 +206,15 @@ MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    path.join(BASE_DIR, 'static'),
+]
+
+STATIC_URL = '/static/'
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

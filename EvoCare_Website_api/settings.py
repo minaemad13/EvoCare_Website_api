@@ -57,7 +57,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
-
 ]
 
 #AUTH_USER_MODEL = 'users.UserProfile'
@@ -106,13 +105,14 @@ REST_FRAMEWORK = {
 MATERIAL_ADMIN_SITE = {
     'HEADER':  ('EvoCare Admin Panel'),  # Admin site header
     'TITLE':  ('EvoCare'),  # Admin site title
-    'FAVICON':  'base/car.ico',  # Admin site favicon (path to static should be specified)
-    'MAIN_BG_COLOR':  '#625D5D',  # Admin site main color, css color should be specified
+    'FAVICON':  'base/icon.ico',  # Admin site favicon (path to static should be specified)
+    'MAIN_BG_COLOR':  '#1C1C1C',  # Admin site main color, css color should be specified
     'MAIN_HOVER_COLOR':  '#efb533',  # Admin site main hover color, css color should be specified
     'PROFILE_PICTURE':  'base/logo.png',  # Admin site profile picture (path to static should be specified)
     'PROFILE_BG':  'base/background.jpg',  # Admin site profile background (path to static should be specified)
     'LOGIN_LOGO':  'base/logo.png',  # Admin site logo on login page (path to static should be specified)
-    # 'LOGOUT_BG':  'path/to/image',  # Admin site background on login/logout pages (path to static should be specified)
+    'LOGIN_BG': 'base/background.jpg',
+    'LOGOUT_BG':  'base/background.jpg',  # Admin site background on login/logout pages (path to static should be specified)
     'SHOW_THEMES':  True,  #  Show default admin themes button
     'TRAY_REVERSE': True,  # Hide object-tools and additional-submit-line by default
     'NAVBAR_REVERSE': True,  # Hide side navbar by default

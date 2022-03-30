@@ -48,7 +48,7 @@ def MyLogin(request):
 
 
 @api_view(['PUT'])
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def EditProfile(request, id):
     if request.method == 'PUT':
         user = UserProfile.objects.get(id=id)
@@ -60,7 +60,7 @@ def EditProfile(request, id):
 
 
 @api_view(['GET'])
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def GetSpecificUser(request, id):
     if request.method == 'GET':
         user = UserProfile.objects.get(id=id)
@@ -76,7 +76,7 @@ def GetSpecificUser(request, id):
         return JsonResponse({"result": "Didn't Find The User"}, status=400)
 
 
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 class GetAppointement(viewsets.ModelViewSet):
     queryset = Appointments.objects.all()
     serializer_class = AppointmentSerializer
@@ -84,7 +84,7 @@ class GetAppointement(viewsets.ModelViewSet):
 
 
 @api_view(['POST'])
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def Take_Appointement(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)

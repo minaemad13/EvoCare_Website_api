@@ -63,4 +63,4 @@ python manage.py runserver
 
 you can see the client side (frontend) wich built using Reactjs from here
 
-https://github.com/CreativeAxisEG/EvoCare_Website/
+https://github.com/minaemad13/EvoCare_Website
